@@ -6,9 +6,8 @@
 
 Drop in a full match recorded on your phone, tag each serve and each point, and ttcut removes the dead time spent retrieving the ball while overlaying a scoreboard that updates as the match goes on. Out comes a tight, watchable video.
 
-<!-- Screenshot goes here. When editing this README on GitHub, drag an image file straight into
-     the text box and GitHub uploads it and inserts the link for you.
-     A UI screenshot works, or a 20-second GIF: load video -> tag a few points -> render -> scoreboard on the result. -->
+<img width="1905" height="934" alt="ttcut demo" src="https://github.com/user-attachments/assets/d8df4502-ef8d-4333-9e4c-b5e97cfd7cc1" />
+
 
 ---
 
