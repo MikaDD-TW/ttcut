@@ -9,6 +9,9 @@
 <!-- 截圖放這裡。在 GitHub 編輯 README 時，把圖片檔直接拖進文字框，GitHub 會自動上傳並產生連結。
      建議放一張介面截圖，或一段 20 秒的 GIF：載入影片 → 標記幾個點 → 渲染 → 成品有計分板。 -->
 
+<img width="1905" height="934" alt="ttcut demo" src="https://github.com/user-attachments/assets/51a75d9a-97bb-4390-902d-ff49c3d31e2b" />
+
+
 ---
 
 ## 需要什麼
