@@ -1,0 +1,24 @@
+# 影片與產出
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.ass
+
+# 標記檔的暫存／自動存檔
+*_autosave.json
+*.autosave.json
+
+# ffmpeg 執行檔（授權因素，不隨專案散布）
+ffmpeg
+ffmpeg.exe
+ffprobe
+ffprobe.exe
+
+# Python
+__pycache__/
+*.pyc
+
+# 作業系統
+.DS_Store
+Thumbs.db
