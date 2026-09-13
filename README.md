@@ -6,7 +6,7 @@ Turn raw table tennis footage into a tight, scored match video — cuts the ball
 
 One Python file. No install, no account, no upload. Your video never leaves your machine.
 
-![The end-of-film stats board](docs/stats-board.png)
+![The end-of-film stats board](stats-board.png)
 
 ---
 
