@@ -6,6 +6,11 @@
 
 單一個 Python 檔。不用安裝、不用註冊、不上傳，影片從頭到尾都待在你自己的電腦裡。
 
+<img width="1905" height="934" alt="ttcut demo" src="https://github.com/user-attachments/assets/54aef9c3-1198-4d8e-90f7-29a79757e5ff" />
+
+
+<img width="1377" height="883" alt="image" src="https://github.com/user-attachments/assets/74a01743-9fb1-48c3-ae74-9201e4a50c91" />
+
 ![片尾的數據統計看板](stats-board.png)
 
 ---
