@@ -6,6 +6,12 @@ Turn raw table tennis footage into a tight, scored match video — cuts the ball
 
 One Python file. No install, no account, no upload. Your video never leaves your machine.
 
+<img width="1905" height="934" alt="ttcut demo" src="https://github.com/user-attachments/assets/54aef9c3-1198-4d8e-90f7-29a79757e5ff" />
+
+
+<img width="1377" height="883" alt="image" src="https://github.com/user-attachments/assets/74a01743-9fb1-48c3-ae74-9201e4a50c91" />
+
+
 ![The end-of-film stats board](stats-board.png)
 
 ---
