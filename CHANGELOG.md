@@ -6,6 +6,77 @@ output-format changes bump the whole number.
 The `_EN` build carries the same version number as the Chinese build it was made
 from; only user-facing text differs.
 
+## V2.5 — 2026-09-20
+
+### Fixed
+- **Stars were lost when a tags file was loaded.** The loader copied only time,
+  type and winner, so after reopening a tags file every star was gone: the next
+  render made no highlight clips, gave no warning, saved the starless tags back
+  to disk, and left the previous render's clips in the folder — which looked as
+  if clip padding and quality could not be changed.
+- The highlight readout showed "clips · 9.0s + reel 3" with the count moved to
+  the end, and the output path gained a stray trailing `/`. Both came from the
+  right-to-left trick used to truncate long paths.
+- Event-list rows wrapped onto two lines, with the star and delete buttons on a
+  second line. The grid had four columns for five or six items; this dates back
+  to V2.2 and got worse when the star was added.
+- In shorter windows the sidebar pushed the render button off-screen and the
+  whole page scrolled, video included. The sidebar now scrolls on its own.
+- The output path was blank after a page refresh.
+
+### Changed
+- Quality is saved in the tags file (`render.quality`) and restored on load,
+  like every other render setting. `--quality` falls back to it when not given.
+- Auto bitrate caps first and applies the quality multiplier after. At 4K50/60
+  on VideoToolbox, "fast" drops to 84M and now sits clearly below "standard" at
+  120M; before, the cap squeezed them to 104M vs 120M. Every other source, tier
+  and platform produces an identical command to V2.4 (46 of 48 combinations
+  checked).
+- Highlight padding sits on its own row labelled "before serve / after point",
+  matching the film's padding fields, and steps by 0.1s instead of 0.5s.
+
+### Added
+- With highlights ticked and nothing starred, the sidebar warns in amber and
+  the render log repeats it; warnings now stay visible after a render finishes.
+
+### Unchanged
+- Scoring, cut planning, highlight ranges and both scoreboards are identical to
+  V2.4 across 300 randomized matches.
+
+## V2.4 — 2026-09-14
+
+### Added
+- **Highlight clips.** Press `H` while tagging to star the rally that just
+  finished; starred points show a ★ in the event list, clickable to toggle.
+- Each starred rally is exported as its own file next to the film:
+  `<output>-1.mp4`, `-2`, `-3`, in time order.
+- A clip runs from the *last* serve before the point to the point. Lets in
+  between are excluded — those rallies never got going.
+- Clip padding is separate from the film's: 1.5s before the serve and 2.5s
+  after the point by default, so a standalone clip shows the wind-up and the
+  reaction.
+- Clips carry the same scoreboard, showing the score going into the rally and
+  updating when the point lands.
+- With two or more clips, `<output>-highlights.mp4` is also produced by
+  concatenating them without re-encoding — instant and lossless.
+- Settings persist in the tags JSON under `highlights`; `--highlights`,
+  `--no-highlights`, `--hl-lead`, `--hl-tail` and `--no-reel` override them.
+
+### Changed
+- Rendering is now a sequence of stages rather than one ffmpeg run. The progress
+  bar weights stages by duration and names the current one.
+- Clips seek on the input (`-ss`/`-t`), so only those seconds are decoded. Ten
+  starred rallies add seconds to a render, not minutes.
+
+### Handled
+- A starred rally with no serve tagged before it starts 10 seconds earlier and
+  logs a warning, rather than being dropped.
+
+### Unchanged
+- With highlights off, the generated ffmpeg command is identical to V2.3's.
+  Verified across 300 randomized matches, along with the V2.2 and V2.3
+  byte-identical checks for the cut list and both scoreboards.
+
 ## V2.3 — 2026-09-13
 
 ### Added
