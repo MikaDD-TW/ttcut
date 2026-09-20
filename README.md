@@ -36,14 +36,17 @@ Tagging is manual on purpose. There is no ball tracking to misfire, and no model
 # macOS
 brew install ffmpeg
 
-# Windows — download a build from https://www.gyan.dev/ffmpeg/builds/
-# and put ffmpeg.exe next to the script, or pass --ffmpeg "C:\ffmpeg\bin"
+# Windows — download ffmpeg-release-essentials.zip from https://www.gyan.dev/ffmpeg/builds/
+# and put ffmpeg.exe and ffprobe.exe (both in its bin folder) next to the script,
+# or pass --ffmpeg "C:\ffmpeg\bin"
 
 # Debian / Ubuntu
 sudo apt install ffmpeg
 ```
 
 ttcut looks for ffmpeg on `PATH`, then beside the script, then in the usual Windows install locations. Without it you can still tag and export JSON — you just can't render.
+
+On Windows there is an easier way to get going: see **Windows: double-click `ttcut_EN.bat`** below.
 
 ## Quick start
 
@@ -60,6 +63,28 @@ That starts a local server on `127.0.0.1` and opens your browser. Then:
 5. **Render video.** The output lands next to your source as `<name>.cut.mp4`.
 
 Your tags are saved alongside the output as `<name>.tags.json`, so you can reload and re-render with different settings without tagging again.
+
+### Windows: double-click `ttcut_EN.bat`
+
+If you'd rather not type commands, the launcher checks your setup and starts ttcut for you.
+
+1. Download this repository (**Code → Download ZIP**) and extract it. The launcher starts the newest version in the folder, so the older files can stay. Or skip the ZIP and put just `ttcut_EN.bat` and `ttcut_v2_5_EN.py` in a folder.
+2. Put `ffmpeg.exe` and `ffprobe.exe` in the same folder. Both are in the `bin` folder of **ffmpeg-release-essentials.zip** from [gyan.dev](https://www.gyan.dev/ffmpeg/builds/).
+3. Double-click **`ttcut_EN.bat`** for English, or **`ttcut.bat`** for Chinese. Your browser opens on the tagging interface.
+4. Leave the black console window open while you work. Closing it shuts ttcut down.
+
+The two launchers are the same file under different names: a name containing `_EN` starts the English build and shows its messages in English. If the language you picked isn't in the folder, it starts the other one.
+
+Before launching, it checks what's there and tells you what's missing:
+
+| It finds | What happens |
+| --- | --- |
+| No Python | Opens python.org. Install with the default options, then double-click the launcher again; restart Windows if it still isn't found. |
+| Python older than 3.8, or without tkinter | Asks you to reinstall the full Python from python.org. Without tkinter, **Load video** can't open the file picker. |
+| No `ffmpeg.exe` | Starts anyway. You can tag and export JSON, but not render. |
+| No `ffprobe.exe` | Starts and renders, but can't read the video's specs: 60 fps footage may come out at 30 fps, and iPhone HDR isn't converted, so colours look washed out. |
+
+Two things can happen the first time. Windows may warn that the file came from the internet; confirm that you want to run it. And if iPhone footage won't play in the browser, Chrome and Edge need Microsoft's **HEVC Video Extensions** from the Microsoft Store. Setting the iPhone camera format to **Most Compatible** avoids this for future recordings.
 
 ### Keyboard
 
@@ -206,10 +231,14 @@ Files from older versions load fine; missing blocks fall back to defaults.
 
 ## Which file do I download?
 
-| File | Interface |
+| File | What it is |
 | --- | --- |
-| `ttcut_v2_5.py` | Traditional Chinese |
-| `ttcut_v2_5_EN.py` | English |
+| `ttcut_v2_5.py` | the tool, Traditional Chinese interface |
+| `ttcut_v2_5_EN.py` | the tool, English interface |
+| `ttcut.bat` | Windows launcher, Chinese interface (see **Windows** under Quick start) |
+| `ttcut_EN.bat` | Windows launcher, English interface |
+
+The `v2_2` and `v2_3` files are older versions kept for reference; you only need the newest.
 
 The two are verified to produce identical scoring, cut planning, and stats. Both keep CJK-capable fonts for the burned-in names, so a tags file with Chinese player names renders correctly in either build.
 

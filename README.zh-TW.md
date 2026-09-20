@@ -35,14 +35,17 @@
 # macOS
 brew install ffmpeg
 
-# Windows —— 到 https://www.gyan.dev/ffmpeg/builds/ 下載，
-# 把 ffmpeg.exe 放在腳本旁邊，或用 --ffmpeg "C:\ffmpeg\bin" 指定資料夾
+# Windows —— 到 https://www.gyan.dev/ffmpeg/builds/ 下載 ffmpeg-release-essentials.zip，
+# 把 bin 資料夾裡的 ffmpeg.exe 和 ffprobe.exe 放在腳本旁邊，
+# 或用 --ffmpeg "C:\ffmpeg\bin" 指定資料夾
 
 # Debian / Ubuntu
 sudo apt install ffmpeg
 ```
 
 ttcut 會依序找 `PATH`、腳本旁邊、Windows 常見安裝位置。找不到也還能標記和匯出 JSON，只是沒辦法算圖。
+
+Windows 有更簡單的方法，見下方「**Windows：點兩下 `ttcut.bat`**」。
 
 ## 快速上手
 
@@ -59,6 +62,28 @@ python3 ttcut_v2_5.py
 5. 按 **製作成片**。成品會放在來源影片旁邊，檔名是 `<原檔名>.cut.mp4`。
 
 標記會同時存成 `<原檔名>.tags.json` 放在成片旁邊，之後要換參數重算，讀回來就好，不必重標。
+
+### Windows：點兩下 `ttcut.bat`
+
+不想打指令的話，啟動器會幫你檢查環境、直接啟動。
+
+1. 下載這個 repo（**Code → Download ZIP**）並解壓縮。啟動器會自動開資料夾裡最新的版本，舊版留著也沒關係。也可以不下載整包，只把 `ttcut.bat` 和 `ttcut_v2_5.py` 放進同一個資料夾。
+2. 把 `ffmpeg.exe` 和 `ffprobe.exe` 放進同一個資料夾：到 [gyan.dev](https://www.gyan.dev/ffmpeg/builds/) 下載 **ffmpeg-release-essentials.zip**，兩個都在裡面的 `bin` 資料夾。
+3. 點兩下 **`ttcut.bat`** 開中文版，點 **`ttcut_EN.bat`** 開英文版，瀏覽器就會打開標記介面。
+4. 使用期間讓那個黑色視窗開著，關掉它 ttcut 就會結束。
+
+兩個啟動器是同一個檔案，只是檔名不同：檔名裡有 `_EN` 就開英文版，訊息也用英文。資料夾裡沒有你要的語言時，會改開另一種語言的版本。
+
+啟動前它會先檢查環境，缺什麼會直接告訴你：
+
+| 狀況 | 會怎樣 |
+| --- | --- |
+| 沒裝 Python | 自動打開 python.org。用預設選項安裝，裝好再點一次啟動器；還是找不到就重新開機。 |
+| Python 低於 3.8，或缺少 tkinter | 請你到 python.org 重新安裝完整版。少了 tkinter，**載入影片** 就跳不出選檔視窗。 |
+| 沒有 `ffmpeg.exe` | 照樣啟動，可以標記、匯出 JSON，但不能算圖。 |
+| 沒有 `ffprobe.exe` | 照樣啟動也能算圖，但讀不到影片規格：60fps 的影片可能輸出成 30fps，iPhone 的 HDR 也不會轉換，顏色會發灰。 |
+
+第一次用可能會遇到兩件事。Windows 可能跳出警告，說這個檔案來自網路，確認要執行就好。另外，iPhone 錄的影片如果在瀏覽器裡放不出來，是因為 Chrome 和 Edge 需要 Microsoft Store 上的「HEVC 視訊延伸模組」才能播；把 iPhone 相機的格式改成「最相容」，之後錄的影片就不會有這個問題。
 
 ### 快捷鍵
 
@@ -205,10 +230,14 @@ python3 ttcut_v2_5.py match.tags.json match.MOV --dry-run      # 只印剪接表
 
 ## 我該下載哪一個檔案
 
-| 檔案 | 介面語言 |
+| 檔案 | 用途 |
 | --- | --- |
-| `ttcut_v2_5.py` | 繁體中文 |
-| `ttcut_v2_5_EN.py` | 英文 |
+| `ttcut_v2_5.py` | 主程式，繁體中文介面 |
+| `ttcut_v2_5_EN.py` | 主程式，英文介面 |
+| `ttcut.bat` | Windows 啟動器，開中文版（見「快速上手」裡的 Windows 一節） |
+| `ttcut_EN.bat` | Windows 啟動器，開英文版 |
+
+repo 裡的 `v2_2`、`v2_3` 是舊版，留著供參考，只要下載最新版就好。
 
 兩份已驗證計分、剪接規劃與統計數字完全一致。兩份都保留支援中日韓的字型，所以標記檔裡放中文選手名，在英文版一樣顯示正常。
 
